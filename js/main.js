@@ -2,7 +2,7 @@
 
 const STORAGE_KEY = "still-seen-photo-records-v1";
 const DATA_VERSION_KEY = "still-seen-photo-data-version";
-const DATA_VERSION = "4";
+const DATA_VERSION = "5";
 const LEGACY_IMAGE_IDS = {
   p01: "1500530855697-b586d89ba3ee",
   p02: "1519608487953-e999c86e7455",
@@ -45,7 +45,10 @@ const starterPhotos = [
   { id: "p21", title: "Sun Between the Leaves", category: "Portrait", location: "San Francisco, USA", year: 2025, camera: "Nikon Z6 II", image: "img/portrait-sunlight.webp", description: "A quiet portrait framed by soft daylight and the shade of nearby trees." },
   { id: "p22", title: "The Hills Hold the Mist", category: "Nature", location: "Scottish Highlands", year: 2024, camera: "Canon EOS R6", image: "img/misty-hills.webp", description: "Cloud and land meet in the first still minutes of a mountain morning." },
   { id: "p23", title: "Above the Tree Line", category: "Landscape", location: "Banff, Canada", year: 2026, camera: "Sony A7 III", image: "img/mountain-ridge.webp", description: "A clear view across a rugged alpine ridge after the clouds lift." },
-  { id: "p24", title: "A Mirror for the Mountains", category: "Travel", location: "Hallstatt, Austria", year: 2024, camera: "Fujifilm X-T5", image: "img/lake-reflection.webp", description: "Still water doubles the mountains and small lakeside village at dawn." }
+  { id: "p24", title: "A Mirror for the Mountains", category: "Travel", location: "Hallstatt, Austria", year: 2024, camera: "Fujifilm X-T5", image: "img/lake-reflection.webp", description: "Still water doubles the mountains and small lakeside village at dawn." },
+  { id: "p25", title: "Green Between the Buildings", category: "USF", location: "Tampa campus, Florida", year: 2026, camera: "Campus field notes", image: "img/usf-campus-overlook.jpg", description: "An overlook across the University of South Florida Tampa campus, with palms, walkways, and the shade of old trees.", credit: { author: "FightingRaven531", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", source: "https://commons.wikimedia.org/wiki/File:Usf_tampa_overlook.jpg" } },
+  { id: "p26", title: "A Campus Landmark", category: "USF", location: "University of South Florida, Tampa", year: 2025, camera: "Campus field notes", image: "img/usf-water-tower.jpg", description: "The water tower rises above campus as a familiar landmark on the University of South Florida grounds.", credit: { author: "Izzxox", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", source: "https://commons.wikimedia.org/wiki/File:Water_tower_at_University_of_South_Florida.jpg" } },
+  { id: "p27", title: "Running of the Bulls", category: "USF", location: "Marshall Student Center, Tampa", year: 2025, camera: "Campus field notes", image: "img/usf-marshall-center.jpg", description: "Students gather outside the Marshall Student Center for the University of South Florida's Running of the Bulls.", credit: { author: "Rick DeBow", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Licensing", source: "https://commons.wikimedia.org/wiki/File:USF_Marshall_Center_Running_of_the_Bulls.JPG" } }
 ];
 
 function getPhotos() {
@@ -119,6 +122,9 @@ function setupGallery() {
     option.textContent = name;
     category.append(option);
   });
+  const requestedCategory = new URLSearchParams(window.location.search).get("category");
+  const matchingCategory = [...category.options].find(option => option.value.toLocaleLowerCase() === (requestedCategory || "").toLocaleLowerCase());
+  if (matchingCategory) category.value = matchingCategory.value;
 
   function render() {
     let photos = getPhotos();
@@ -142,6 +148,10 @@ function setupGallery() {
       document.querySelector("#dialog-location").textContent = photo.location;
       document.querySelector("#dialog-year").textContent = photo.year;
       document.querySelector("#dialog-camera").textContent = photo.camera || "Not recorded";
+      const credit = document.querySelector("#dialog-credit");
+      credit.innerHTML = photo.credit
+        ? `Photo by ${escapeHTML(photo.credit.author)}. <a href="${escapeHTML(photo.credit.source)}" target="_blank" rel="noopener noreferrer">Source</a> · <a href="${escapeHTML(photo.credit.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHTML(photo.credit.license)}</a>.`
+        : "";
       dialog.showModal();
     }));
   }
@@ -168,7 +178,7 @@ function setupManager() {
   const empty = field("records-empty");
   const count = field("record-count");
   const submit = field("submit-photo");
-  const categoryOptions = ["Landscape", "Portrait", "Street", "Travel", "Architecture", "Wildlife", "Seascape", "Nature", "Food", "Culture"];
+  const categoryOptions = ["Landscape", "Portrait", "Street", "Travel", "Architecture", "Wildlife", "Seascape", "Nature", "Food", "Culture", "USF"];
 
   function resetForm() {
     form.reset();

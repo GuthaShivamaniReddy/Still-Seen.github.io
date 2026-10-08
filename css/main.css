@@ -131,6 +131,8 @@ h1 em, h2 em { color: var(--olive); font-weight: 500; }
 .dialog-copy dl div { display: grid; gap: 4px; }
 .dialog-copy dt { color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
 .dialog-copy dd { margin: 0; font-size: 11px; }
+.photo-credit { margin: 22px 0 0; color: var(--muted); font-size: 10px; line-height: 1.7; }
+.photo-credit a { color: var(--olive); text-decoration: underline; text-underline-offset: 2px; }
 .dialog-close { position: absolute; z-index: 2; top: 12px; right: 12px; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; background: var(--paper); cursor: pointer; font-size: 23px; line-height: 1; }
 .manager-layout { display: grid; grid-template-columns: minmax(300px, .75fr) 1.25fr; gap: clamp(35px, 6vw, 85px); padding-top: 15px; padding-bottom: 110px; align-items: start; }
 .entry-form { padding: 26px; border: 1px solid var(--line); background: rgba(255,255,255,.25); }
