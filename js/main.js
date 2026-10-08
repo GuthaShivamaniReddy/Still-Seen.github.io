@@ -2,7 +2,7 @@
 
 const STORAGE_KEY = "still-seen-photo-records-v1";
 const DATA_VERSION_KEY = "still-seen-photo-data-version";
-const DATA_VERSION = "5";
+const DATA_VERSION = "6";
 const LEGACY_IMAGE_IDS = {
   p01: "1500530855697-b586d89ba3ee",
   p02: "1519608487953-e999c86e7455",
@@ -46,9 +46,7 @@ const starterPhotos = [
   { id: "p22", title: "The Hills Hold the Mist", category: "Nature", location: "Scottish Highlands", year: 2024, camera: "Canon EOS R6", image: "img/misty-hills.webp", description: "Cloud and land meet in the first still minutes of a mountain morning." },
   { id: "p23", title: "Above the Tree Line", category: "Landscape", location: "Banff, Canada", year: 2026, camera: "Sony A7 III", image: "img/mountain-ridge.webp", description: "A clear view across a rugged alpine ridge after the clouds lift." },
   { id: "p24", title: "A Mirror for the Mountains", category: "Travel", location: "Hallstatt, Austria", year: 2024, camera: "Fujifilm X-T5", image: "img/lake-reflection.webp", description: "Still water doubles the mountains and small lakeside village at dawn." },
-  { id: "p25", title: "Green Between the Buildings", category: "USF", location: "Tampa campus, Florida", year: 2026, camera: "Campus field notes", image: "img/usf-campus-overlook.jpg", description: "An overlook across the University of South Florida Tampa campus, with palms, walkways, and the shade of old trees.", credit: { author: "FightingRaven531", license: "CC BY-SA 3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", source: "https://commons.wikimedia.org/wiki/File:Usf_tampa_overlook.jpg" } },
   { id: "p26", title: "A Campus Landmark", category: "USF", location: "University of South Florida, Tampa", year: 2025, camera: "Campus field notes", image: "img/usf-water-tower.jpg", description: "The water tower rises above campus as a familiar landmark on the University of South Florida grounds.", credit: { author: "Izzxox", license: "CC BY-SA 4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", source: "https://commons.wikimedia.org/wiki/File:Water_tower_at_University_of_South_Florida.jpg" } },
-  { id: "p27", title: "Running of the Bulls", category: "USF", location: "Marshall Student Center, Tampa", year: 2025, camera: "Campus field notes", image: "img/usf-marshall-center.jpg", description: "Students gather outside the Marshall Student Center for the University of South Florida's Running of the Bulls.", credit: { author: "Rick DeBow", license: "Public domain", licenseUrl: "https://commons.wikimedia.org/wiki/Commons:Licensing", source: "https://commons.wikimedia.org/wiki/File:USF_Marshall_Center_Running_of_the_Bulls.JPG" } }
 ];
 
 function getPhotos() {
@@ -57,9 +55,10 @@ function getPhotos() {
   const photos = JSON.parse(stored);
   if (!Array.isArray(photos)) throw new Error("Saved photography records are not in the expected format.");
   if (localStorage.getItem(DATA_VERSION_KEY) !== DATA_VERSION) {
-    const existingIds = new Set(photos.map(photo => photo.id));
+    const removedImages = new Set(["img/usf-campus-overlook.jpg", "img/usf-marshall-center.jpg"]);
+    const retainedPhotos = photos.filter(photo => !removedImages.has(photo.image));
     const starterById = new Map(starterPhotos.map(photo => [photo.id, photo]));
-    photos.forEach(photo => {
+    retainedPhotos.forEach(photo => {
       const legacyImageId = LEGACY_IMAGE_IDS[photo.id];
       const legacyImagePath = LEGACY_IMAGE_PATHS[photo.id];
       const replacement = starterById.get(photo.id);
@@ -69,9 +68,11 @@ function getPhotos() {
         photo.image = replacement.image;
       }
     });
-    const additions = starterPhotos.filter(photo => Number(photo.id.slice(1)) >= 13 && !existingIds.has(photo.id));
-    photos.push(...additions.map(photo => ({ ...photo })));
-    savePhotos(photos);
+    const retainedIds = new Set(retainedPhotos.map(photo => photo.id));
+    const additions = starterPhotos.filter(photo => Number(photo.id.slice(1)) >= 13 && !retainedIds.has(photo.id));
+    retainedPhotos.push(...additions.map(photo => ({ ...photo })));
+    savePhotos(retainedPhotos);
+    return retainedPhotos;
   }
   return photos;
 }

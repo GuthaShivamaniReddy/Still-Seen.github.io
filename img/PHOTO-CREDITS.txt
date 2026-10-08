@@ -1,12 +1,4 @@
-University of South Florida campus photographs
-
-usf-campus-overlook.jpg
-Title: Usf tampa overlook
-Author: FightingRaven531
-License: CC BY-SA 3.0
-Source: https://commons.wikimedia.org/wiki/File:Usf_tampa_overlook.jpg
-License terms: https://creativecommons.org/licenses/by-sa/3.0/
-Locally hosted. No edits were made to the downloaded image.
+University of South Florida campus photograph
 
 usf-water-tower.jpg
 Title: Water tower at University of South Florida
@@ -14,11 +6,4 @@ Author: Izzxox
 License: CC BY-SA 4.0
 Source: https://commons.wikimedia.org/wiki/File:Water_tower_at_University_of_South_Florida.jpg
 License terms: https://creativecommons.org/licenses/by-sa/4.0/
-Locally hosted from a Commons-generated 1280px thumbnail. No further edits were made.
-
-usf-marshall-center.jpg
-Title: USF Marshall Center Running of the Bulls
-Author: Rick DeBow
-License: Public domain
-Source: https://commons.wikimedia.org/wiki/File:USF_Marshall_Center_Running_of_the_Bulls.JPG
 Locally hosted from a Commons-generated 1280px thumbnail. No further edits were made.
