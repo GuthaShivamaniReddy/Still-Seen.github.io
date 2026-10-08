@@ -204,7 +204,7 @@ function setupManager() {
       field("photo-category").value = photo.category;
       field("photo-year").value = photo.year;
       field("photo-location").value = photo.location;
-      field("photo-image").value = photo.image;
+      field("photo-image").value = new URL(photo.image, window.location.href).href;
       field("photo-description").value = photo.description;
       field("photo-camera").value = photo.camera || "";
       field("form-heading").textContent = "Update photograph";
