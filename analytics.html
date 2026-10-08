@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
-  <script src="js/main.js?v=5" defer></script>
+  <script src="js/main.js?v=6" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
 </head>
 <body>
@@ -28,6 +28,8 @@
         <article class="chart-card"><div class="chart-heading"><div><p class="eyebrow">01 / Subject</p><h2>What catches the eye</h2></div><span>PHOTOS BY CATEGORY</span></div><div class="chart-container"><canvas id="category-chart" role="img" aria-label="Doughnut chart showing number of photographs by category"></canvas></div></article>
         <article class="chart-card"><div class="chart-heading"><div><p class="eyebrow">02 / Time</p><h2>When frames were made</h2></div><span>PHOTOS BY YEAR</span></div><div class="chart-container"><canvas id="year-chart" role="img" aria-label="Bar chart showing photographs by year"></canvas></div></article>
         <article class="chart-card chart-wide"><div class="chart-heading"><div><p class="eyebrow">03 / Place</p><h2>Where the story wanders</h2></div><span>PHOTOS BY LOCATION</span></div><div class="chart-container chart-container-wide"><canvas id="location-chart" role="img" aria-label="Horizontal bar chart showing the most photographed locations"></canvas></div></article>
+        <article class="chart-card"><div class="chart-heading"><div><p class="eyebrow">04 / Equipment</p><h2>Tools behind the frame</h2></div><span>PHOTOS BY CAMERA</span></div><div class="chart-container"><canvas id="camera-chart" role="img" aria-label="Horizontal bar chart showing photographs by camera or equipment label"></canvas></div></article>
+        <article class="chart-card"><div class="chart-heading"><div><p class="eyebrow">05 / Subjects over time</p><h2>How attention shifts</h2></div><span>CATEGORIES BY YEAR</span></div><div class="chart-container"><canvas id="category-year-chart" role="img" aria-label="Stacked bar chart showing photography categories by year"></canvas></div></article>
       </div>
       <p class="analytics-note">Numbers and visualizations are derived from the photography records in the collection. Add, edit, or remove records on the <a href="managephotos.html">collection desk</a> to see the summary update.</p>
     </section>

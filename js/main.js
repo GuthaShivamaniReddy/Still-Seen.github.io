@@ -277,6 +277,8 @@ function setupAnalytics() {
   const categories = countBy(photos, photo => photo.category);
   const years = countBy(photos, photo => String(photo.year));
   const locations = countBy(photos, photo => photo.location);
+  const yearsSorted = Object.keys(years).sort();
+  const categoriesSorted = Object.keys(categories).sort();
   totalElement.textContent = String(photos.length);
   document.querySelector("#metric-categories").textContent = String(Object.keys(categories).length);
   document.querySelector("#metric-locations").textContent = String(Object.keys(locations).length);
@@ -310,6 +312,33 @@ function setupAnalytics() {
     type: "bar",
     data: { labels: sortedLocations.map(([name]) => name), datasets: [{ label: "Photographs", data: sortedLocations.map(([, amount]) => amount), backgroundColor: "#929a80", borderRadius: 2, maxBarThickness: 30 }] },
     options: { ...commonOptions, indexAxis: "y", scales: chartScales(), plugins: { ...commonOptions.plugins, legend: { display: false } } }
+  });
+  const cameras = countBy(photos, photo => photo.camera || "Not recorded");
+  const sortedCameras = Object.entries(cameras).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8);
+  new Chart(document.querySelector("#camera-chart"), {
+    type: "bar",
+    data: { labels: sortedCameras.map(([name]) => name), datasets: [{ label: "Photographs", data: sortedCameras.map(([, amount]) => amount), backgroundColor: "#b47753", borderRadius: 2, maxBarThickness: 30 }] },
+    options: { ...commonOptions, indexAxis: "y", scales: chartScales(), plugins: { ...commonOptions.plugins, legend: { display: false } } }
+  });
+  const categoryYearColors = ["#68735a", "#b47753", "#929a80", "#cfb781", "#53666a", "#b8a79a", "#7f7566", "#9c745d", "#aab19a", "#596e72", "#d2b989"];
+  new Chart(document.querySelector("#category-year-chart"), {
+    type: "bar",
+    data: {
+      labels: yearsSorted,
+      datasets: categoriesSorted.map((category, index) => ({
+        label: category,
+        data: yearsSorted.map(year => photos.filter(photo => photo.category === category && String(photo.year) === year).length),
+        backgroundColor: categoryYearColors[index % categoryYearColors.length],
+        borderRadius: 2
+      }))
+    },
+    options: {
+      ...commonOptions,
+      scales: {
+        x: { ...chartScales().x, stacked: true },
+        y: { ...chartScales().y, stacked: true }
+      }
+    }
   });
 }
 
