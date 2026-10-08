@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A visual summary of the photography collection, including categories, years, and locations.">
+  <title>Field Notes | Still / Seen</title>
+  <link rel="icon" href="img/brand-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/main.js?v=4" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><div class="nav-shell">
+    <a class="brand" href="index.html"><img src="img/brand-mark.svg" alt=""><span>STILL <i>/</i> SEEN</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation"><span></span><span></span></button>
+    <nav class="primary-nav" id="primary-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="portfolio.html">Portfolio</a><a href="managephotos.html">Manage photos</a><a class="current" aria-current="page" href="analytics.html">Analytics</a><a href="aboutus.html">About</a></nav>
+  </div></header>
+  <main>
+    <section class="page-intro section-wrap"><p class="eyebrow">Field notes · Reading the collection</p><h1>The shape of <em>looking.</em></h1><div class="page-intro-row"><p>A few simple ways to see what this collection is made of, and where its attention tends to wander.</p><span class="page-index">03 | ANALYTICS</span></div></section>
+    <section class="analytics-section section-wrap">
+      <div class="metric-grid"><article class="metric-card"><span>Frames collected</span><strong id="metric-total">0</strong><small>across the current archive</small></article><article class="metric-card"><span>Categories explored</span><strong id="metric-categories">0</strong><small>different ways of seeing</small></article><article class="metric-card"><span>Places recorded</span><strong id="metric-locations">0</strong><small>distinct locations</small></article><article class="metric-card"><span>Years represented</span><strong id="metric-years">0</strong><small>in this visual journal</small></article></div>
+      <p class="chart-error" id="chart-error" role="status" hidden>Charts could not be loaded. Check your internet connection and reload this page. The collection summary is still available above.</p>
+      <div class="chart-grid">
+        <article class="chart-card"><div class="chart-heading"><div><p class="eyebrow">01 / Subject</p><h2>What catches the eye</h2></div><span>PHOTOS BY CATEGORY</span></div><div class="chart-container"><canvas id="category-chart" role="img" aria-label="Doughnut chart showing number of photographs by category"></canvas></div></article>
+        <article class="chart-card"><div class="chart-heading"><div><p class="eyebrow">02 / Time</p><h2>When frames were made</h2></div><span>PHOTOS BY YEAR</span></div><div class="chart-container"><canvas id="year-chart" role="img" aria-label="Bar chart showing photographs by year"></canvas></div></article>
+        <article class="chart-card chart-wide"><div class="chart-heading"><div><p class="eyebrow">03 / Place</p><h2>Where the story wanders</h2></div><span>PHOTOS BY LOCATION</span></div><div class="chart-container chart-container-wide"><canvas id="location-chart" role="img" aria-label="Horizontal bar chart showing the most photographed locations"></canvas></div></article>
+      </div>
+      <p class="analytics-note">Numbers and visualizations are derived from the photography records in the collection. Add, edit, or remove records on the <a href="managephotos.html">collection desk</a> to see the summary update.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="footer-inner"><a class="brand" href="index.html"><img src="img/brand-mark.svg" alt=""><span>STILL <i>/</i> SEEN</span></a><span>A small study in looking.</span><span>© <span data-year></span> · ISM 6225</span></div></footer>
+</body>
+</html>

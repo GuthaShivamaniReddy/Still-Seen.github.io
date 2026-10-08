@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Add, view, update, and remove entries in the photography collection.">
+  <title>Collection Desk | Still / Seen</title>
+  <link rel="icon" href="img/brand-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/main.js?v=4" defer></script>
+</head>
+<body>
+  <header class="site-header"><div class="nav-shell">
+    <a class="brand" href="index.html"><img src="img/brand-mark.svg" alt=""><span>STILL <i>/</i> SEEN</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation"><span></span><span></span></button>
+    <nav class="primary-nav" id="primary-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="portfolio.html">Portfolio</a><a class="current" aria-current="page" href="managephotos.html">Manage photos</a><a href="analytics.html">Analytics</a><a href="aboutus.html">About</a></nav>
+  </div></header>
+  <main>
+    <section class="page-intro section-wrap"><p class="eyebrow">Collection desk · Local demo</p><h1>Care for the <em>archive.</em></h1><div class="page-intro-row"><p>Keep the details that give each frame a place in the story. Changes are saved in this browser only.</p><span class="page-index">02 | MANAGEMENT</span></div></section>
+    <section class="manager-layout section-wrap">
+      <form class="entry-form" id="photo-form">
+        <div class="form-heading"><div><p class="eyebrow">Record details</p><h2 id="form-heading">Add a photograph</h2></div><span class="record-number" id="form-mode">NEW RECORD</span></div>
+        <input id="photo-id" type="hidden">
+        <label class="form-field"><span>Title <b>*</b></span><input id="photo-title" name="title" maxlength="80" required placeholder="A name for this frame"></label>
+        <div class="form-row">
+          <label class="form-field"><span>Category <b>*</b></span><select id="photo-category" name="category" required><option value="">Choose one</option><option>Landscape</option><option>Portrait</option><option>Street</option><option>Travel</option><option>Architecture</option><option>Wildlife</option><option>Seascape</option><option>Nature</option><option>Food</option><option>Culture</option></select></label>
+          <label class="form-field"><span>Year <b>*</b></span><input id="photo-year" name="year" type="number" min="1900" max="2100" required value="2026"></label>
+        </div>
+        <label class="form-field"><span>Location <b>*</b></span><input id="photo-location" name="location" maxlength="100" required placeholder="City, country"></label>
+        <label class="form-field"><span>Image URL <b>*</b></span><input id="photo-image" name="image" type="url" required placeholder="https://…"></label>
+        <label class="form-field"><span>Short story <b>*</b></span><textarea id="photo-description" name="description" rows="3" maxlength="240" required placeholder="What should someone know about this moment?"></textarea></label>
+        <label class="form-field"><span>Camera</span><input id="photo-camera" name="camera" maxlength="80" placeholder="Camera or lens (optional)"></label>
+        <div class="form-actions"><button class="button button-dark" id="submit-photo" type="submit">Add to collection <span aria-hidden="true">↗</span></button><button class="button button-quiet" id="cancel-edit" type="button" hidden>Cancel edit</button></div>
+        <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
+      </form>
+      <div class="records-panel">
+        <div class="records-heading"><div><p class="eyebrow">Your entries</p><h2>In the collection <span id="record-count"></span></h2></div><p>EDIT OR REMOVE A RECORD</p></div>
+        <div class="records-list" id="records-list"></div>
+        <p class="empty-state" id="records-empty" hidden>No records yet. Add the first photograph using the form.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="footer-inner"><a class="brand" href="index.html"><img src="img/brand-mark.svg" alt=""><span>STILL <i>/</i> SEEN</span></a><span>A small study in looking.</span><span>© <span data-year></span> · ISM 6225</span></div></footer>
+</body>
+</html>
