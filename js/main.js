@@ -313,13 +313,6 @@ function setupAnalytics() {
     data: { labels: sortedLocations.map(([name]) => name), datasets: [{ label: "Photographs", data: sortedLocations.map(([, amount]) => amount), backgroundColor: "#929a80", borderRadius: 2, maxBarThickness: 30 }] },
     options: { ...commonOptions, indexAxis: "y", scales: chartScales(), plugins: { ...commonOptions.plugins, legend: { display: false } } }
   });
-  const cameras = countBy(photos, photo => photo.camera || "Not recorded");
-  const sortedCameras = Object.entries(cameras).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 8);
-  new Chart(document.querySelector("#camera-chart"), {
-    type: "bar",
-    data: { labels: sortedCameras.map(([name]) => name), datasets: [{ label: "Photographs", data: sortedCameras.map(([, amount]) => amount), backgroundColor: "#b47753", borderRadius: 2, maxBarThickness: 30 }] },
-    options: { ...commonOptions, indexAxis: "y", scales: chartScales(), plugins: { ...commonOptions.plugins, legend: { display: false } } }
-  });
   const categoryYearColors = ["#68735a", "#b47753", "#929a80", "#cfb781", "#53666a", "#b8a79a", "#7f7566", "#9c745d", "#aab19a", "#596e72", "#d2b989"];
   new Chart(document.querySelector("#category-year-chart"), {
     type: "bar",
