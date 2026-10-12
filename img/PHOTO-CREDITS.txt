@@ -7,3 +7,10 @@ License: CC BY-SA 4.0
 Source: https://commons.wikimedia.org/wiki/File:Water_tower_at_University_of_South_Florida.jpg
 License terms: https://creativecommons.org/licenses/by-sa/4.0/
 Locally hosted from a Commons-generated 1280px thumbnail. No further edits were made.
+
+Additional collection photographs
+
+Files collection-27.jpg through collection-61.jpg are locally hosted photographs
+sourced from Unsplash. Each photograph's detail view links to its Unsplash image
+source and the Unsplash License:
+https://unsplash.com/license

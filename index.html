@@ -10,9 +10,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
-  <script src="js/main.js?v=5" defer></script>
+  <script src="js/main.js?v=10" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="nav-shell">
       <a class="brand" href="index.html"><img src="img/brand-mark.svg" alt=""><span>STILL <i>/</i> SEEN</span></a>
@@ -26,7 +27,7 @@
       </nav>
     </div>
   </header>
-  <main>
+  <main id="main-content" tabindex="-1">
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow"><span class="eyebrow-dot"></span> Photography portfolio · Shivamani Reddy</p>
@@ -37,21 +38,110 @@
       </div>
       <div class="hero-visual">
         <img src="img/alpine-lake.webp" alt="Mountain lake reflecting a dramatic, cloud-filled sky">
-        <div class="photo-caption">                <span>01 / 25</span><span>Quiet places, loud feelings</span><span>46° 51′ N, 9° 31′ E</span></div>
+        <div class="photo-caption"><span>01 / <span data-collection-total>60</span></span><span>Quiet places, loud feelings</span><span>46° 51′ N, 9° 31′ E</span></div>
         <div class="image-stamp">FIELD<br>NOTES<br><b>№ 01</b></div>
       </div>
-      <div class="hero-index" aria-hidden="true">01 | 25</div>
+      <div class="hero-index" aria-hidden="true">01 | <span data-collection-total>60</span></div>
     </section>
     <section class="intro section-wrap">
       <div><p class="eyebrow">The collection</p><h2>Every frame holds<br>a different <em>world.</em></h2></div>
       <div class="intro-aside"><p>From the hush of a distant shoreline to the rhythm of a city street, this is a growing visual journal organized by the places, people, and light that stay with us.</p><a class="text-link" href="portfolio.html">Browse all photographs <span aria-hidden="true">→</span></a></div>
     </section>
+    <section class="light-explorer section-wrap" data-light-explorer>
+      <div class="section-heading"><div><p class="eyebrow">Let the light lead</p><h2>Choose a <em>mood.</em></h2></div><a class="text-link" href="portfolio.html">See the full archive <span aria-hidden="true">↗</span></a></div>
+      <div class="explorer-shell">
+        <div class="explorer-visual">
+          <img id="light-explorer-image" src="img/dolomites.webp" alt="A dawn landscape in the Dolomites">
+          <div class="explorer-overlay">
+            <span class="explorer-badge" id="light-mood-label">Dawn</span>
+            <h3 id="light-mood-title">A fresh start</h3>
+            <p id="light-mood-copy">The first light is quiet and generous, turning the ridgeline into a soft horizon of possibility.</p>
+          </div>
+          <div class="light-meter" aria-label="Light intensity meter">
+            <span>Light level</span>
+            <div class="meter-track"><span id="light-meter-fill"></span></div>
+          </div>
+        </div>
+        <div class="explorer-panel">
+          <p class="eyebrow">Light explorer</p>
+          <h3>Find the feeling in each frame.</h3>
+          <div class="mood-buttons" aria-label="Select a light mood">
+            <button class="mood-button is-active" type="button" data-mood="dawn">Dawn</button>
+            <button class="mood-button" type="button" data-mood="daylight">Daylight</button>
+            <button class="mood-button" type="button" data-mood="golden">Golden</button>
+            <button class="mood-button" type="button" data-mood="night">Night</button>
+          </div>
+          <div class="mood-facts">
+            <div><span>Place</span><strong id="light-location">Dolomites, Italy</strong></div>
+            <div><span>Category</span><strong id="light-category">Landscape</strong></div>
+            <div><span>Year</span><strong id="light-year">2026</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="story-reel section-wrap" data-story-reel>
+      <div class="section-heading"><div><p class="eyebrow">Field journal</p><h2>One <em>tiny story</em> at a time.</h2></div><button class="text-link button-inline" type="button" id="shuffle-story" aria-label="Show another story">Shuffle the next note <span aria-hidden="true">↻</span></button></div>
+      <div class="story-shell">
+        <div class="story-visual">
+          <img id="story-image" src="img/alpine-lake.webp" alt="A reflective mountain lake at dawn">
+          <div class="story-badge" id="story-badge">01 · Picked up in the field</div>
+        </div>
+        <div class="story-copy">
+          <p class="eyebrow" id="story-category">Landscape</p>
+          <h3 id="story-title">The quiet before the valley wakes</h3>
+          <blockquote id="story-quote">“A frame can hold the moment before the world fully wakes up.”</blockquote>
+          <div class="story-meta">
+            <span id="story-location">Lake Bled, Slovenia</span>
+            <span id="story-year">2025</span>
+          </div>
+          <div class="story-tags" id="story-tags">
+            <span>Stillness</span>
+            <span>Reflection</span>
+            <span>Morning</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="journey-map section-wrap" data-journey-map>
+      <div class="section-heading"><div><p class="eyebrow">Travel notes</p><h2>A map of the <em>places</em> this archive keeps.</h2></div><a class="text-link" href="portfolio.html">Open the full route <span aria-hidden="true">↗</span></a></div>
+      <div class="journey-shell">
+        <div class="journey-preview">
+          <img id="journey-image" src="img/alpine-lake.webp" alt="A mountain lake at dawn">
+          <div class="journey-overlay">
+            <span class="eyebrow" id="journey-meta">Landscape · Dolomites</span>
+            <h3 id="journey-title">Where the light lingers</h3>
+            <p id="journey-description">A quiet edge of the day where the mountain and the water seem to hold the same breath.</p>
+          </div>
+        </div>
+        <div class="journey-route" aria-label="Collection route map">
+          <button class="route-stop is-active" type="button" data-journey-index="0"><span class="marker"></span><span class="stop-copy"><strong>Dolomites</strong><small>Italy</small></span></button>
+          <button class="route-stop" type="button" data-journey-index="1"><span class="marker"></span><span class="stop-copy"><strong>New Orleans</strong><small>USA</small></span></button>
+          <button class="route-stop" type="button" data-journey-index="2"><span class="marker"></span><span class="stop-copy"><strong>North Shore</strong><small>Oahu</small></span></button>
+          <button class="route-stop" type="button" data-journey-index="3"><span class="marker"></span><span class="stop-copy"><strong>Vik</strong><small>Iceland</small></span></button>
+          <button class="route-stop" type="button" data-journey-index="4"><span class="marker"></span><span class="stop-copy"><strong>Tampa</strong><small>Florida</small></span></button>
+        </div>
+      </div>
+    </section>
     <section class="featured section-wrap">
       <div class="section-heading"><div><p class="eyebrow">A few favorites</p><h2>Recently <em>collected</em></h2></div><a class="text-link" href="portfolio.html">View the full collection <span aria-hidden="true">↗</span></a></div>
       <div class="featured-grid">
-        <a class="featured-card featured-large" href="portfolio.html"><img src="img/dolomites.webp" alt="Sunlit mountain landscape beneath an open sky" loading="lazy"><span class="card-number">01</span><span class="featured-label"><span>Landscape · Dolomites</span><b>Where the day begins</b></span></a>
-        <a class="featured-card" href="portfolio.html"><img src="img/night-sky.webp" alt="Night sky and mountain silhouettes" loading="lazy"><span class="card-number">02</span><span class="featured-label"><span>Night · Iceland</span><b>After the last light</b></span></a>
-        <a class="featured-card" href="portfolio.html?category=USF"><img src="img/usf-water-tower.jpg" alt="The University of South Florida campus water tower" loading="lazy"><span class="card-number">03</span><span class="featured-label"><span>USF · Tampa campus</span><b>A landmark in green</b></span></a>
+        <a class="featured-card featured-large" href="portfolio.html?photo=p01"><img src="img/dolomites.webp" alt="Sunlit mountain landscape beneath an open sky" loading="lazy"><span class="card-number">01</span><span class="featured-label"><span>Landscape · Dolomites</span><b>Where the day begins</b></span></a>
+        <a class="featured-card" href="portfolio.html?photo=p02"><img src="img/night-sky.webp" alt="Night sky and mountain silhouettes" loading="lazy"><span class="card-number">02</span><span class="featured-label"><span>Night · Iceland</span><b>After the last light</b></span></a>
+        <a class="featured-card" href="portfolio.html?photo=p26"><img src="img/usf-water-tower.jpg" alt="The University of South Florida campus water tower" loading="lazy"><span class="card-number">03</span><span class="featured-label"><span>USF · Tampa campus</span><b>A landmark in green</b></span></a>
+      </div>
+    </section>
+    <section class="frame-game section-wrap" data-frame-game aria-labelledby="frame-game-title">
+      <div class="section-heading"><div><p class="eyebrow">A small looking game</p><h2 id="frame-game-title">Can you read <em>the frame?</em></h2></div><p class="frame-game-score" id="frame-game-score" aria-live="polite">0 correct · 0 tried</p></div>
+      <div class="frame-game-shell">
+        <div class="frame-game-image"><img id="frame-game-image" src="img/dolomites.webp" alt="A mountain landscape from the collection"></div>
+        <div class="frame-game-card">
+          <p class="eyebrow">Name the category</p>
+          <h3 id="frame-game-prompt">What kind of moment are we looking at?</h3>
+          <div class="frame-game-options" id="frame-game-options" role="group" aria-label="Choose the photograph category"></div>
+          <p class="frame-game-feedback" id="frame-game-feedback" aria-live="polite">Look closely at the light, the lines, and the little details.</p>
+          <button class="button button-dark frame-game-next" id="frame-game-next" type="button">Show me another <span aria-hidden="true">↻</span></button>
+          <a class="text-link frame-game-browse" id="frame-game-browse" href="portfolio.html">Browse the collection <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
     </section>
     <section class="home-bottom">
